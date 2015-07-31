@@ -9,7 +9,7 @@ Script that blocks the load when the server is overloaded.
 Script em PHP que verifica se o servidor não está sobrecarregado. Caso esteja bloqueia o carregamento para evitar mais requisições.
 
 ### Version
-V 0.1 (This script is in Aplha version)
+V 0.2 (This script is in Aplha version)
 
 ### How to use
 To use this script, upload the file "overloaded.class.php" for your project. At the beginning of your script includes this code:

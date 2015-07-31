@@ -3,9 +3,10 @@
 class overloaded{
 
   public $type_msg = 'html';  //html, text   (file will be available in the next version)
-  public $debug = false;      //available in the next version
-  public $language = 'pt-br'; //available in the next version
-  public $load;
+  private $debug = false;      //available in the next version
+  private $language = 'en';
+  private $load;
+  private $autoreload = 0; //the page reloads automatically in $autoreload seconds (only in output in html)
 
   function get_server_load() {  
 
@@ -36,12 +37,23 @@ class overloaded{
 
   function show_msg(){
 
+    if(!is_file('language/'.$this->language.'.php')){
+      //language was not found, set the default
+      $this->set_language('en');
+    }
+
+    //load the language
+    require 'language/'.$this->language.'.php';
+
     if('html' == $this->type_msg){
       //html
-      echo "<div style='text-align:center;'><h1>Ops, the server is overloaded! Try again in a few minutes (".$this->load.")</h1></div>";
+      echo "<div style='text-align:center;'><h1>".OVERLOADED_MESSAGE."</h1></div>";
+      if($autoreload > 0){
+        echo "<meta http-equiv='refresh' content='".$autoreload."'>";
+      }
     }else{
       //txt
-      echo "Ops, the server is overloaded! Try again in a few minutes (".$this->load.")";
+      echo OVERLOADED_MESSAGE;
     }
 
   }//show_msg end
@@ -58,6 +70,19 @@ class overloaded{
     }    
 
   }//check end
+
+  function set_language($newlanguage){
+
+    //It is filtered to prevent users with less experience leave the system vulnerable
+    $newlanguage = strip_tags($newlanguage);
+    $newlanguage = str_replace('/','',$newlanguage);
+    $newlanguage = str_replace('\\','',$newlanguage);
+    $newlanguage = str_replace('.','',$newlanguage);
+    $newlanguage = str_replace(',','',$newlanguage);
+
+    $this->language = $newlanguage;
+
+  }//set_language end 
 
 }//class end
 

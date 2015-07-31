@@ -5,7 +5,7 @@
 
 include 'overloaded.class.php';
 $serverover = new overloaded();
-$serverover->check(30);
+$serverover->check(10);
 
 ?>
 
