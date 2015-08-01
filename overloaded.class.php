@@ -3,7 +3,7 @@
 class overloaded{
 
   public $type_msg = 'html';  //html, text   (file will be available in the next version)
-  private $debug = false;      //available in the next version
+  private $debug = false;      //false - true
   private $language = 'en';
   private $load;
   private $autoreload = 0; //the page reloads automatically in $autoreload seconds (only in output in html)
@@ -60,11 +60,14 @@ class overloaded{
 
   function check($max_proces){
 
+    if(!$debug){
+      error_reporting(0); //Turn off all error reporting
+    }
+
     $this->load = $this->get_server_load();
 
     if($this->load >= $max_proces){
 
-      error_reporting(0); //Turn off all error reporting
       $this->show_msg(); //show the error message
       break;
     }    
@@ -83,6 +86,12 @@ class overloaded{
     $this->language = $newlanguage;
 
   }//set_language end 
+
+  function set_autoreload($val){
+
+    $this->autoreload = (int)$val;
+
+  }//set_autoreload end
 
 }//class end
 
