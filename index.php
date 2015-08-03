@@ -5,6 +5,8 @@
 
 include 'overloaded.class.php';
 $serverover = new overloaded();
+$serverover->set_language('en'); 	//define the language
+$serverover->set_autoreload('4'); 	//reloads the page every 4 seconds
 $serverover->check(10);
 
 ?>

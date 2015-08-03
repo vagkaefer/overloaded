@@ -64,7 +64,9 @@ class overloaded{
 
     if($this->load >= $max_proces){
 
-      error_reporting(0); //Turn off all error reporting
+      if(!$this->debug){
+        error_reporting(0); //Turn off all error reporting
+      }
       $this->show_msg(); //show the error message
       break;
     }    
@@ -83,6 +85,20 @@ class overloaded{
     $this->language = $newlanguage;
 
   }//set_language end 
+
+  function set_autoreload($autoreload){
+
+    if($autoreload < 0){
+      $autoreload = $autoreload*(-1);
+    }
+    if($autoreload != 0){
+      $this->autoreload = $autoreload;
+    }else{
+      if($this->debug){
+        echo AUTORLD_ERROR;
+      }
+    }
+  }//set_autoreload end 
 
 }//class end
 
