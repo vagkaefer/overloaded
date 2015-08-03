@@ -25,5 +25,20 @@ $serverover->check($max_processing); //$max_processing is the maximum percentage
 ```
 
 ### Variables
-Will be available in the next version
-
+##### - Language
+Change the language of the alerts!
+```
+$serverover->set_language( string );
+```
+Languages available:
+```
+'pt-br'-> "Português do Brasil"
+'en'-> "English"
+'es'-> "Español"
+```
+##### - Autoreload
+The page reloads automatically every X seconds. Set zero to disable!
+```
+$serverover->set_autoreload( int seconds );
+```
+The default value is 0
