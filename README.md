@@ -18,7 +18,7 @@ To use this script, upload the file "overloaded.class.php" and the folder "langu
 include 'overloaded.class.php';
 $serverover = new overloaded();
 $max_processing = 30; // 0 - 100
-$serverover->check($max_processing); //$max_processing is the maximum percentage of processing
+$serverover->check($max_processing); //If processing is greater than $ max_processing charging is blocked.
 ```
 
 ### Variables
